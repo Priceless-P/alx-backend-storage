@@ -1,6 +1,6 @@
 -- Creates a trigger that decreases the quantity
 -- of an item after adding a new order
-DROP TRIGGER IF EXISTS decrease_item
+DROP TRIGGER IF EXISTS decrease_item;
 DELIMITER $$
 CREATE TRIGGER decrease_item
     AFTER INSERT ON orders

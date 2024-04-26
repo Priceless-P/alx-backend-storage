@@ -1,6 +1,6 @@
 -- Creates a trigger that resets the attribute valid_email
 -- only when the email has been changed.
-DROP TRIGGER IF EXISTS email_verify
+DROP TRIGGER IF EXISTS email_verify;
 DELIMITER $$
 CREATE TRIGGER email_verify
     BEFORE UPDATE ON users

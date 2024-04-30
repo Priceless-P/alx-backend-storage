@@ -14,7 +14,7 @@ def get_log_stats(nginx_collection):
 
     for method_ in methods:
         count = nginx_collection.count_documents({"method": method_})
-        print("     method {}: {}".format(method_, count))
+        print("\tmethod {}: {}".format(method_, count))
 
     status_check = nginx_collection.count_documents(
                                     {"method": "GET", "path": "/status"})

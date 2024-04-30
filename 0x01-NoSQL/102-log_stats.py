@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Log stats"""
 from pymongo import MongoClient
+from collections import Counter
 
 
 def get_log_stats(nginx_collection):
@@ -18,7 +19,10 @@ def get_log_stats(nginx_collection):
     status_check = nginx_collection.count_documents(
                                     {"method": "GET", "path": "/status"})
     print("{} status check".format(status_check))
-
+    count_ips = Counter(doc['ip'] for doc in nginx_collection.find({}, {"ip":1}))
+    top_ten = count_ips.most_common(10)
+    for ip, count in top_ten:
+        print("      {}: {}".format(ip, count))
 
 if __name__ == "__main__":
     client = MongoClient('mongodb://127.0.0.1:27017')

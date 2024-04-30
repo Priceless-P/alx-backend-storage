@@ -27,11 +27,12 @@ def parse_log():
                                                     "path": "/status"})
     print(f"{count_status} status check")
 
+    print("IPs:")
     count_ips = Counter(doc['ip'] for doc in nginx_collection.
                         find({}, {"ip": 1}))
     top_ten = count_ips.most_common(10)
     for ip, count in top_ten:
-        print("      {}: {}".format(ip, count))
+        print("\t{}: {}".format(ip, count))
 
 
 if __name__ == "__main__":

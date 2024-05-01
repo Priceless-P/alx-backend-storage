@@ -40,7 +40,7 @@ def replay(method: Callable) -> None:
     key = method.__qualname__
     db = redis.Redis()
     calls = db.get(key).decode("utf-8")
-    print("{} was called {} times".format(key, calls))
+    print("{} was called {} times:".format(key, calls))
     inputs = db.lrange(key + ":inputs", 0, -1)
     outputs = db.lrange(key + ":outputs", 0, -1)
     for i, o in zip(inputs, outputs):
